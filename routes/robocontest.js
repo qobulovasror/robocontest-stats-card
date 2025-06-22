@@ -7,6 +7,7 @@ router.get("/:username", async (req, res) => {
   try {
     const { username } = req.params;
     const extension_type = req.query.extension_type || "card";
+    const theme = req.query.theme || "dark";
     const {stats, activity} = await fetchRoboContestStats(username);
     
     res.setHeader('Content-Type', 'image/svg+xml');
@@ -20,7 +21,7 @@ router.get("/:username", async (req, res) => {
         res.render("robocontest/card-attempts", { stats, activity, username });
         break;
       default:
-        res.render("robocontest/card", { stats, activity, username });
+        res.render("robocontest/card", { stats, activity, username, theme });
         break;
     }
   } catch (error) {

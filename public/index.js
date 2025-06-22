@@ -26,6 +26,7 @@ form.addEventListener('submit', async (e) => {
   card.classList.add('d-none');
   const username = document.getElementById('username').value.trim();
   const extension_type = document.getElementById('extension_type').value;
+  const theme = document.getElementById('theme').value;
   if (!username) {
     Swal.fire({
       title: "Error!",
@@ -46,7 +47,7 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
-  const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}?extension_type=${extension_type}`;
+  const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}?extension_type=${extension_type}&theme=${theme}`;
 
   // Load the card
   preview.src = cardUrl;
@@ -83,6 +84,7 @@ getLinkButton.addEventListener('click', async (e) => {
   e.preventDefault();
   const username = document.getElementById('username').value.trim();
   const extension_type = document.getElementById('extension_type').value;
+  const theme = document.getElementById('theme').value;
   if (!username) {
     Swal.fire({
       title: "Error!",
@@ -102,7 +104,7 @@ getLinkButton.addEventListener('click', async (e) => {
     return;
   }
 
-  const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}?extension_type=${extension_type}`;
+  const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}?extension_type=${extension_type}&theme=${theme}`;
   await navigator.clipboard.writeText("![Summary card]("+window.location.origin + cardUrl+")");
   Swal.fire({
     title: "Success!",
@@ -117,6 +119,7 @@ openInNewTabButton.addEventListener('click', async (e) => {
   e.preventDefault();
   const username = document.getElementById('username').value.trim();
   const extension_type = document.getElementById('extension_type').value;
+  const theme = document.getElementById('theme').value;
   if (!username) {
     Swal.fire({
       title: "Error!",
@@ -136,6 +139,6 @@ openInNewTabButton.addEventListener('click', async (e) => {
     return;
   }
 
-  const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}?extension_type=${extension_type}`;
+  const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}?extension_type=${extension_type}&theme=${theme}`;
   window.open(cardUrl, '_blank');
 });
