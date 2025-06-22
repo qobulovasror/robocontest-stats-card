@@ -9,6 +9,7 @@ import logger from "../config/logger.js";
 
 // Routes
 import robocontestRoutes from "../routes/robocontest.js";
+import leetcodeRoutes from "../routes/leetcode.js";
 import homeRoutes from "../routes/homeRoutes.js";
 import NotFoundRoutes from "../routes/notFoundRoutes.js";
 
@@ -34,6 +35,7 @@ const routes = (app) => {
   // Routes
   app.use("/", homeRoutes);
   app.use("/cards/robocontest", robocontestRoutes);
+  app.use("/cards/leetcode", leetcodeRoutes);
 
   app.use(NotFoundRoutes);
 

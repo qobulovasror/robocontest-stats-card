@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboContest Stats Card Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2563eb;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: linear-gradient(45deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        .card-preview {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .card-preview img {
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .examples {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .examples h3 {
+            color: #333;
+            margin-top: 0;
+        }
+        .example-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .example-links a {
+            color: #2563eb;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #2563eb;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+        .example-links a:hover {
+            background: #2563eb;
+            color: white;
+        }
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2563eb;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RoboContest Stats Card Generator</h1>
+        
+        <div class="info-box">
+            <strong>About RoboContest:</strong> RoboContest is a competitive programming platform for Uzbek developers. 
+            This card generator fetches real-time statistics from <a href="https://robocontest.uz" target="_blank">robocontest.uz</a>.
+        </div>
+        
+        <form id="robocontestForm">
+            <div class="form-group">
+                <label for="username">RoboContest Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter RoboContest username" required>
+            </div>
+            <button type="submit">Generate Stats Card</button>
+        </form>
+        
+        <div class="card-preview" id="cardPreview" style="display: none;">
+            <h3>Your RoboContest Stats Card:</h3>
+            <img id="cardImage" alt="RoboContest Stats Card">
+        </div>
+        
+        <div class="examples">
+            <h3>Example Cards:</h3>
+            <p>Try these RoboContest users to see the card in action:</p>
+            <div class="example-links">
+                <a href="/cards/robocontest/qobulovasror" target="_blank">qobulovasror</a>
+                <a href="/cards/robocontest/admin" target="_blank">admin</a>
+                <a href="/cards/robocontest/test" target="_blank">test</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('robocontestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            if (!username) return;
+            
+            const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}`;
+            const cardImage = document.getElementById('cardImage');
+            const cardPreview = document.getElementById('cardPreview');
+            
+            // Show loading state
+            cardImage.src = '';
+            cardPreview.style.display = 'block';
+            
+            // Load the card
+            cardImage.src = cardUrl;
+            cardImage.onload = function() {
+                console.log('Card loaded successfully');
+            };
+            cardImage.onerror = function() {
+                alert('Error loading card. Please check if the username exists on RoboContest.');
+                cardPreview.style.display = 'none';
+            };
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,103 @@
+<svg width="495" height="195" viewBox="0 0 495 195" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F7931E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d2d2d;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="495" height="195" rx="10" fill="url(#cardGradient)" filter="url(#shadow)"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="495" height="50" rx="10" fill="url(#headerGradient)"/>
+  
+  <!-- LeetCode Logo/Title -->
+  <text x="20" y="32" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">
+    LeetCode Stats
+  </text>
+  
+  <!-- Username -->
+  <text x="20" y="75" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FF6B35">
+    @<%= stats.username %>
+  </text>
+  
+  <!-- Real Name if available -->
+  <% if (stats.realName && stats.realName !== stats.username) { %>
+    <text x="20" y="95" font-family="Arial, sans-serif" font-size="12" fill="#CCCCCC">
+      <%= stats.realName %>
+    </text>
+  <% } %>
+  
+  <!-- Main Stats Grid -->
+  <g transform="translate(20, 110)">
+    <!-- Total Solved -->
+    <rect x="0" y="0" width="140" height="60" rx="8" fill="#2a2a2a" stroke="#FF6B35" stroke-width="1"/>
+    <text x="70" y="20" font-family="Arial, sans-serif" font-size="12" fill="#CCCCCC" text-anchor="middle">Total Solved</text>
+    <text x="70" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FF6B35" text-anchor="middle"><%= stats.totalSolved %></text>
+    
+    <!-- Ranking -->
+    <rect x="150" y="0" width="140" height="60" rx="8" fill="#2a2a2a" stroke="#F7931E" stroke-width="1"/>
+    <text x="220" y="20" font-family="Arial, sans-serif" font-size="12" fill="#CCCCCC" text-anchor="middle">Ranking</text>
+    <text x="220" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#F7931E" text-anchor="middle">#<%= stats.ranking.toLocaleString() %></text>
+    
+    <!-- Acceptance Rate -->
+    <rect x="300" y="0" width="140" height="60" rx="8" fill="#2a2a2a" stroke="#4CAF50" stroke-width="1"/>
+    <text x="370" y="20" font-family="Arial, sans-serif" font-size="12" fill="#CCCCCC" text-anchor="middle">Acceptance</text>
+    <text x="370" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4CAF50" text-anchor="middle"><%= stats.acceptanceRate %>%</text>
+  </g>
+  
+  <!-- Difficulty Breakdown -->
+  <g transform="translate(20, 180)">
+    <!-- Easy -->
+    <circle cx="15" cy="0" r="8" fill="#00AF9B"/>
+    <text x="30" y="5" font-family="Arial, sans-serif" font-size="12" fill="#CCCCCC">Easy: <%= stats.easySolved %></text>
+    
+    <!-- Medium -->
+    <circle cx="120" cy="0" r="8" fill="#FFB800"/>
+    <text x="135" y="5" font-family="Arial, sans-serif" font-size="12" fill="#CCCCCC">Medium: <%= stats.mediumSolved %></text>
+    
+    <!-- Hard -->
+    <circle cx="225" cy="0" r="8" fill="#FF2D55"/>
+    <text x="240" y="5" font-family="Arial, sans-serif" font-size="12" fill="#CCCCCC">Hard: <%= stats.hardSolved %></text>
+  </g>
+  
+  <!-- Additional Info -->
+  <g transform="translate(350, 110)">
+    <!-- Reputation -->
+    <text x="0" y="15" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC">Reputation:</text>
+    <text x="0" y="30" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFD700"><%= stats.reputation.toLocaleString() %></text>
+    
+    <!-- Star Rating -->
+    <% if (stats.starRating > 0) { %>
+      <text x="0" y="50" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC">Stars:</text>
+      <text x="0" y="65" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFD700">⭐ <%= stats.starRating %></text>
+    <% } %>
+    
+    <!-- Country -->
+    <% if (stats.country && stats.country !== 'Unknown') { %>
+      <text x="0" y="85" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC">Country:</text>
+      <text x="0" y="100" font-family="Arial, sans-serif" font-size="12" fill="#CCCCCC"><%= stats.country %></text>
+    <% } %>
+  </g>
+  
+  <!-- Badge Section -->
+  <% if (stats.activeBadge) { %>
+    <g transform="translate(350, 140)">
+      <text x="0" y="15" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC">Active Badge:</text>
+      <text x="0" y="30" font-family="Arial, sans-serif" font-size="12" fill="#FFD700"><%= stats.activeBadge.displayName %></text>
+    </g>
+  <% } %>
+  
+  <!-- Footer -->
+  <text x="20" y="190" font-family="Arial, sans-serif" font-size="8" fill="#666666">
+    Generated by robocontest-stats-card
+  </text>
+</svg> 
