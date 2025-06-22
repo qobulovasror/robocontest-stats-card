@@ -6,12 +6,23 @@ const router = express.Router();
 router.get("/:username", async (req, res) => {
   try {
     const { username } = req.params;
-    const stats = await fetchRoboContestStats(username);
+    const extension_type = req.query.extension_type || "card";
+    const {stats, activity} = await fetchRoboContestStats(username);
     
     res.setHeader('Content-Type', 'image/svg+xml');
     res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
     
-    res.render("robocontest-card", { stats, username });
+    switch (extension_type) {
+      case "card_activity":
+        res.render("robocontest/card-activity", { stats, activity, username });
+        break;
+      case "card_attempts":
+        res.render("robocontest/card-attempts", { stats, activity, username });
+        break;
+      default:
+        res.render("robocontest/card", { stats, activity, username });
+        break;
+    }
   } catch (error) {
     console.error('Error generating RoboContest card:', error);
     res.status(500).send('Error generating card');

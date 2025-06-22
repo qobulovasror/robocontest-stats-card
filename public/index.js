@@ -25,6 +25,7 @@ form.addEventListener('submit', async (e) => {
   spinner.classList.remove('d-none');
   card.classList.add('d-none');
   const username = document.getElementById('username').value.trim();
+  const extension_type = document.getElementById('extension_type').value;
   if (!username) {
     Swal.fire({
       title: "Error!",
@@ -45,19 +46,19 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
-  const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}`;
+  const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}?extension_type=${extension_type}`;
 
   // Load the card
   preview.src = cardUrl;
   preview.onload = function () {
     spinner.classList.add('d-none');
     card.classList.remove('d-none');
-    document.getElementById('link').value = window.location.origin + cardUrl;
+    document.getElementById('link').value = "![Summary card]("+window.location.origin + cardUrl+")";
   };
 
   document.getElementById('copy-link').addEventListener('click', async () => {
     e.preventDefault();
-    await navigator.clipboard.writeText(window.location.origin + cardUrl);
+    await navigator.clipboard.writeText("![Summary card]("+window.location.origin + cardUrl+")");
     Swal.fire({
       title: "Success!",
       text: "Link copied to clipboard",
@@ -81,6 +82,7 @@ form.addEventListener('submit', async (e) => {
 getLinkButton.addEventListener('click', async (e) => {
   e.preventDefault();
   const username = document.getElementById('username').value.trim();
+  const extension_type = document.getElementById('extension_type').value;
   if (!username) {
     Swal.fire({
       title: "Error!",
@@ -100,7 +102,7 @@ getLinkButton.addEventListener('click', async (e) => {
     return;
   }
 
-  const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}`;
+  const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}?extension_type=${extension_type}`;
   await navigator.clipboard.writeText("![Summary card]("+window.location.origin + cardUrl+")");
   Swal.fire({
     title: "Success!",
@@ -114,6 +116,7 @@ getLinkButton.addEventListener('click', async (e) => {
 openInNewTabButton.addEventListener('click', async (e) => {
   e.preventDefault();
   const username = document.getElementById('username').value.trim();
+  const extension_type = document.getElementById('extension_type').value;
   if (!username) {
     Swal.fire({
       title: "Error!",
@@ -133,6 +136,6 @@ openInNewTabButton.addEventListener('click', async (e) => {
     return;
   }
 
-  const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}`;
+  const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}?extension_type=${extension_type}`;
   window.open(cardUrl, '_blank');
 });
