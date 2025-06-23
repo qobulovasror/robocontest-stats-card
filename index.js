@@ -6,3 +6,6 @@ const app = express();
 
 appSetup(app)
 routes(app)
+
+// Vercel uchun export
+export default app;
