@@ -15,10 +15,10 @@ router.get("/:username", async (req, res) => {
     
     switch (extension_type) {
       case "card_activity":
-        res.render("robocontest/card-activity", { stats, activity, username });
+        res.render("robocontest/card-activity", { stats, activity, username, theme });
         break;
       case "card_attempts":
-        res.render("robocontest/card-attempts", { stats, activity, username });
+        res.render("robocontest/card-attempts", { stats, activity, username, theme });
         break;
       default:
         res.render("robocontest/card", { stats, activity, username, theme });

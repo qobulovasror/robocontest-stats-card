@@ -1,8 +1,8 @@
-<svg width="495" height="360" viewBox="0 0 495 360" xmlns="http://www.w3.org/2000/svg">
+<svg width="495" height="280" viewBox="0 0 495 280" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
     </linearGradient>
     <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
@@ -22,85 +22,90 @@
   </defs>
   
   <!-- Background -->
-  <rect width="495" height="360" rx="10" fill="url(#cardGradient)" filter="url(#shadow)"/>
+  <rect width="495" height="280" rx="10" fill="url(#cardGradient)" filter="url(#shadow)"/>
   
   <!-- Header -->
   <rect x="0" y="0" width="495" height="50" rx="10" fill="url(#headerGradient)"/>
   
   <!-- RoboContest Logo/Title -->
   <text x="20" y="32" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">
-    RoboContest - <%= stats.username %>
+    Recent Attempts - <%= stats.username %>
   </text>
   
-  <!-- User Stats Summary -->
+  <!-- User Info -->
   <g transform="translate(20, 70)">
-    <text x="227" y="0" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2563eb" text-anchor="middle">
+    <text x="0" y="15" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#8b5cf6">
       <%= stats.fullName %>
     </text>
     
-    <!-- Quick Stats -->
-    <rect x="0" y="12" width="80" height="40" rx="5" fill="#2a2a2a" stroke="#2563eb" stroke-width="1"/>
-    <text x="40" y="30" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC" text-anchor="middle">Rank</text>
-    <text x="40" y="46" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2563eb" text-anchor="middle">#<%= stats.rank.toLocaleString() %></text>
+    <!-- Stats Row -->
+    <rect x="0" y="25" width="70" height="25" rx="5" fill="#2a2a2a" stroke="#8b5cf6" stroke-width="1"/>
+    <text x="35" y="35" font-family="Arial, sans-serif" font-size="9" fill="#CCCCCC" text-anchor="middle">Rank</text>
+    <text x="35" y="45" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#8b5cf6" text-anchor="middle">#<%= stats.rank.toLocaleString() %></text>
     
-    <rect x="125" y="12" width="80" height="40" rx="5" fill="#2a2a2a" stroke="#fbbf24" stroke-width="1"/>
-    <text x="165" y="30" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC" text-anchor="middle">Rating</text>
-    <text x="165" y="46" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fbbf24" text-anchor="middle"><%= stats.rating %></text>
+    <rect x="80" y="25" width="70" height="25" rx="5" fill="#2a2a2a" stroke="#fbbf24" stroke-width="1"/>
+    <text x="115" y="35" font-family="Arial, sans-serif" font-size="9" fill="#CCCCCC" text-anchor="middle">Rating</text>
+    <text x="115" y="45" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fbbf24" text-anchor="middle"><%= stats.rating %></text>
     
-    <rect x="250" y="12" width="80" height="40" rx="5" fill="#2a2a2a" stroke="#10b981" stroke-width="1"/>
-    <text x="290" y="30" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC" text-anchor="middle">Solved</text>
-    <text x="290" y="46" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#10b981" text-anchor="middle"><%= stats.solved %>/<%= stats.total %></text>
+    <rect x="160" y="25" width="70" height="25" rx="5" fill="#2a2a2a" stroke="#10b981" stroke-width="1"/>
+    <text x="195" y="35" font-family="Arial, sans-serif" font-size="9" fill="#CCCCCC" text-anchor="middle">Solved</text>
+    <text x="195" y="45" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#10b981" text-anchor="middle"><%= stats.solved %></text>
     
-    <rect x="375" y="12" width="80" height="40" rx="5" fill="#2a2a2a" stroke="#8b5cf6" stroke-width="1"/>
-    <text x="415" y="30" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC" text-anchor="middle">Stars</text>
-    <text x="415" y="46" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#8b5cf6" text-anchor="middle"><%= stats.solvedStars %>/<%= stats.totalStars %></text>
+    <rect x="240" y="25" width="70" height="25" rx="5" fill="#2a2a2a" stroke="#ef4444" stroke-width="1"/>
+    <text x="275" y="35" font-family="Arial, sans-serif" font-size="9" fill="#CCCCCC" text-anchor="middle">Stars</text>
+    <text x="275" y="45" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#ef4444" text-anchor="middle"><%= stats.solvedStars %></text>
   </g>
   
-  <!-- Activity Table Header -->
-  <g transform="translate(20, 130)">
-    <rect x="0" y="0" width="455" height="25" rx="5" fill="#2563eb"/>
-    <text x="10" y="17" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">Task</text>
-    <text x="180" y="17" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">Language</text>
-    <text x="250" y="17" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">Status</text>
-    <text x="310" y="17" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">Time</text>
-    <text x="370" y="17" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">Date</text>
+  <!-- Attempts List -->
+  <g transform="translate(20, 110)">
+    <text x="0" y="15" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#CCCCCC">
+      Last 5 Attempts:
+    </text>
+    
+    <% activity.forEach((attempt, index) => { %>
+      <g transform="translate(0, <%= 25 + index * 32 %>)">
+        <!-- Attempt Card -->
+        <rect x="0" y="0" width="455" height="28" rx="6" fill="<%= index % 2 === 0 ? '#2a2a2a' : '#333333' %>" stroke="<%= attempt.attemStatus.toLowerCase().includes('accepted') ? '#10b981' : '#ef4444' %>" stroke-width="1"/>
+        
+        <!-- Status Indicator -->
+        <circle cx="15" cy="14" r="6" fill="<%= attempt.attemStatus.toLowerCase().includes('accepted') ? '#10b981' : '#ef4444' %>"/>
+        
+        <!-- Task Name -->
+        <text x="30" y="18" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC">
+          <%= attempt.taskName.length > 30 ? attempt.taskName.substring(0, 30) + '...' : attempt.taskName %>
+        </text>
+        
+        <!-- Language -->
+        <text x="280" y="18" font-family="Arial, sans-serif" font-size="9" fill="#fbbf24">
+          <%= attempt.langName %>
+        </text>
+        
+        <!-- Time & Memory -->
+        <text x="350" y="18" font-family="Arial, sans-serif" font-size="9" fill="#10b981">
+          <%= attempt.time %> | <%= attempt.memory %>
+        </text>
+        
+        <!-- Date -->
+        <text x="420" y="18" font-family="Arial, sans-serif" font-size="8" fill="#666666">
+          <%= attempt.date %>
+        </text>
+      </g>
+    <% }); %>
   </g>
   
-  <!-- Activity Rows -->
-  <% activity.forEach((attempt, index) => { %>
-    <g transform="translate(20, <%= 160 + index * 37 %>)">
-      <rect x="0" y="0" width="455" height="32" rx="5" fill="<%= index % 2 === 0 ? '#2a2a2a' : '#333333' %>"/>
-      
-      <!-- Task Name -->
-      <text x="10" y="21" font-family="Arial, sans-serif" font-size="10" fill="#CCCCCC">
-        <%= attempt.taskName.length > 22 ? attempt.taskName.substring(0, 22) + '...' : attempt.taskName %>
-      </text>
-      
-      <!-- Language -->
-      <text x="180" y="21" font-family="Arial, sans-serif" font-size="10" fill="#fbbf24">
-        <%= attempt.langName %>
-      </text>
-      
-      <!-- Status -->
-      <rect x="250" y="9" width="50" height="14" rx="7" fill="<%= attempt.attemStatus.toLowerCase().includes('accepted') ? 'url(#successGradient)' : 'url(#errorGradient)' %>"/>
-      <text x="275" y="19" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="white" text-anchor="middle">
-        <%= attempt.attemStatus.toLowerCase().includes('accepted') ? 'AC' : 'WA' %>
-      </text>
-      
-      <!-- Time -->
-      <text x="310" y="21" font-family="Arial, sans-serif" font-size="10" fill="#10b981">
-        <%= attempt.time %>
-      </text>
-      
-      <!-- Date -->
-      <text x="370" y="21" font-family="Arial, sans-serif" font-size="9" fill="#666666">
-        <%= attempt.date %>
-      </text>
-    </g>
-  <% }); %>
+  <!-- Success Rate -->
+  <g transform="translate(20, 240)">
+    <text x="0" y="15" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#CCCCCC">
+      Success Rate: <tspan fill="#10b981"><%= stats.successRate %>%</tspan>
+    </text>
+    
+    <!-- Progress Bar -->
+    <rect x="0" y="20" width="200" height="8" rx="4" fill="#333333"/>
+    <rect x="0" y="20" width="<%= Math.min(200, (stats.successRate / 100) * 200) %>" height="8" rx="4" fill="url(#successGradient)"/>
+  </g>
   
   <!-- Footer -->
-  <text x="20" y="355" font-family="Arial, sans-serif" font-size="8" fill="#666666">
-    Generated by robocontest-stats-card | Last 5 attempts
+  <text x="20" y="270" font-family="Arial, sans-serif" font-size="8" fill="#666666">
+    Generated by robocontest-stats-card | Attempts Overview
   </text>
-</svg>
+</svg> 

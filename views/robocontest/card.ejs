@@ -39,6 +39,23 @@
         <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
       </linearGradient>
     <% } %>
+    <style>
+      @keyframes textColorAnimation {
+        0% { stop-color: #ff0000; }
+        33% { stop-color: #00ff00; }
+        66% { stop-color: #0000ff; }
+        100% { stop-color: #ff0000; }
+      }
+      
+      .animate-text-color stop {
+        animation: textColorAnimation 3s ease infinite;
+      }
+    </style>
+    
+    <linearGradient id="animatedTextGradient" x1="0%" y1="0%" x2="100%" y2="0%" class="animate-text-color">
+      <stop offset="0%" style="stop-color:#CCCCCC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#CCCCCC;stop-opacity:1" />
+    </linearGradient>
     <linearGradient id="ratingGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
