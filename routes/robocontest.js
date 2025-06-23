@@ -14,9 +14,9 @@ router.get("/:username", async (req, res) => {
     res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
     
     switch (extension_type) {
-      case "card_activity":
-        res.render("robocontest/card-activity", { stats, activity, username, theme });
-        break;
+      // case "card_activity":
+      //   res.render("robocontest/card-activity", { stats, activity, username, theme });
+      //   break;
       case "card_attempts":
         res.render("robocontest/card-attempts", { stats, activity, username, theme });
         break;
