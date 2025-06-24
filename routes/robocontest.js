@@ -10,6 +10,7 @@ router.get("/:username", async (req, res) => {
     const theme = req.query.theme || "dark";
     const {stats, activity} = await fetchRoboContestStats(username);
     
+    // SVG formatda qaytarish uchun header'lar
     res.setHeader('Content-Type', 'image/svg+xml');
     res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
     
