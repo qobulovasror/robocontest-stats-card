@@ -8,6 +8,7 @@ const preview = document.getElementById('preview');
 const generateButton = document.getElementById('generate');
 const getLinkButton = document.getElementById('get-link');
 const openInNewTabButton = document.getElementById('open-in-new-tab');
+const clearButton = document.getElementById('clearForm');
 
 //check if the username exists on Robocontest
 const checkUsername = async (username) => {
@@ -141,4 +142,12 @@ openInNewTabButton.addEventListener('click', async (e) => {
 
   const cardUrl = `/cards/robocontest/${encodeURIComponent(username)}?extension_type=${extension_type}&theme=${theme}`;
   window.open(cardUrl, '_blank');
+});
+
+
+clearButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  form.reset();
+  document.getElementById('username').value = "";
+  card.classList.add('d-none');
 });
