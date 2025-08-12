@@ -103,16 +103,19 @@ GET /cards/robocontest/{username}
 ```
 http://localhost:3000/cards/robocontest/qobulovasror
 ```
+![Summary card](https://robocontest-stats-card.vercel.app/cards/robocontest/qobulovasror?extension_type=card&theme=dark)
 
 **Light Theme:**
 ```
 http://localhost:3000/cards/robocontest/qobulovasror?theme=light
 ```
+![Summary card](https://robocontest-stats-card.vercel.app/cards/robocontest/qobulovasror?extension_type=card&theme=light)
 
 **Attempts Card:**
 ```
 http://localhost:3000/cards/robocontest/qobulovasror?extension_type=card_attempts
 ```
+![Summary card](https://robocontest-stats-card.vercel.app/cards/robocontest/qobulovasror?extension_type=card_attempts&theme=dark)
 
 ### LeetCode Stats Card
 
@@ -134,7 +137,7 @@ http://localhost:3000/cards/leetcode/qobulovasror
 ## 🎨 Card Examples
 
 ### RoboContest Card
-![RoboContest Card](https://via.placeholder.com/495x240/1a1a1a/ffffff?text=RoboContest+Stats+Card)
+![Summary card](https://robocontest-stats-card.vercel.app/cards/robocontest/qobulovasror?extension_type=card&theme=dark)
 
 **Features displayed:**
 - User rank and rating
