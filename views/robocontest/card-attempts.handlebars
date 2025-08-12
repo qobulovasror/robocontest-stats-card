@@ -4,7 +4,7 @@
       <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
     </linearGradient>
-    <% if (theme === "dark") { %>
+    {{#if (eq theme "dark")}}
     <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#2d2d2d;stop-opacity:1" />
@@ -29,7 +29,7 @@
       <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:1" />
     </linearGradient>
-    <% } else { %>
+    {{else}}
       <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
         <stop offset="100%" style="stop-color:#cccccc;stop-opacity:1" />
@@ -54,7 +54,7 @@
         <stop offset="0%" style="stop-color:#ca9100;stop-opacity:1" />
         <stop offset="100%" style="stop-color:#ca9100;stop-opacity:1" />
       </linearGradient>
-    <% } %>
+    {{/if}}
     <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#2d2d2d;stop-opacity:1" />
@@ -80,31 +80,31 @@
   
   <!-- RoboContest Logo/Title -->
   <text x="20" y="32" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">
-    RoboContest - <%= stats.username %>
+    RoboContest - {{stats.username}}
   </text>
   
   <!-- User Stats Summary -->
   <g transform="translate(20, 70)">
     <text x="227" y="0" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2563eb" text-anchor="middle">
-      <%= stats.fullName %>
+      {{stats.fullName}}
     </text>
     
     <!-- Quick Stats -->
     <rect x="0" y="12" width="80" height="40" rx="5" fill="url(#subCardGradient)" stroke="#2563eb" stroke-width="1"/>
     <text x="40" y="30" font-family="Arial, sans-serif" font-size="10" fill="url(#textGradient)" text-anchor="middle">Rank</text>
-    <text x="40" y="46" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2563eb" text-anchor="middle">#<%= stats.rank.toLocaleString() %></text>
+    <text x="40" y="46" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2563eb" text-anchor="middle">#{{formatNumber stats.rank}}</text>
     
     <rect x="125" y="12" width="80" height="40" rx="5" fill="url(#subCardGradient)" stroke="#fbbf24" stroke-width="1"/>
     <text x="165" y="30" font-family="Arial, sans-serif" font-size="10" fill="url(#textGradient)" text-anchor="middle">Rating</text>
-    <text x="165" y="46" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fbbf24" text-anchor="middle"><%= stats.rating %></text>
+    <text x="165" y="46" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fbbf24" text-anchor="middle">{{stats.rating}}</text>
     
     <rect x="250" y="12" width="80" height="40" rx="5" fill="url(#subCardGradient)" stroke="#10b981" stroke-width="1"/>
     <text x="290" y="30" font-family="Arial, sans-serif" font-size="10" fill="url(#textGradient)" text-anchor="middle">Solved</text>
-    <text x="290" y="46" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#10b981" text-anchor="middle"><%= stats.solved %>/<%= stats.total %></text>
+    <text x="290" y="46" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#10b981" text-anchor="middle">{{stats.solved}}/{{stats.total}}</text>
     
     <rect x="375" y="12" width="80" height="40" rx="5" fill="url(#subCardGradient)" stroke="#8b5cf6" stroke-width="1"/>
     <text x="415" y="30" font-family="Arial, sans-serif" font-size="10" fill="url(#textGradient)" text-anchor="middle">Stars</text>
-    <text x="415" y="46" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#8b5cf6" text-anchor="middle"><%= stats.solvedStars %>/<%= stats.totalStars %></text>
+    <text x="415" y="46" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#8b5cf6" text-anchor="middle">{{stats.solvedStars}}/{{stats.totalStars}}</text>
   </g>
   
   <!-- Activity Table Header -->
@@ -118,37 +118,37 @@
   </g>
   
   <!-- Activity Rows -->
-  <% activity.forEach((attempt, index) => { %>
-    <g transform="translate(20, <%= 160 + index * 37 %>)">
-      <rect x="0" y="0" width="455" height="32" rx="5" fill="<%= index % 2 === 0 ? 'url(#subCardGradient)' : 'url(#subCardGradient2)' %>"/>
+  {{#each activity}}
+    <g transform="translate(20, {{add 160 (multiply @index 37)}})">
+      <rect x="0" y="0" width="455" height="32" rx="5" fill="{{ternary (isEven @index) 'url(#subCardGradient)' 'url(#subCardGradient2)'}}"/>
       
       <!-- Task Name -->
       <text x="10" y="21" font-family="Arial, sans-serif" font-size="10" fill="url(#textGradient)">
-        <%= attempt.taskName.length > 22 ? attempt.taskName.substring(0, 22) + '...' : attempt.taskName %>
+        {{truncate taskName 22}}
       </text>
       
       <!-- Language -->
       <text x="180" y="21" font-family="Arial, sans-serif" font-size="10" fill="url(#langGradient)">
-        <%= attempt.langName %>
+        {{langName}}
       </text>
       
       <!-- Status -->
-      <rect x="250" y="9" width="50" height="14" rx="7" fill="<%= attempt.attemStatus.toLowerCase().includes('accepted') ? 'url(#successGradient)' : 'url(#errorGradient)' %>"/>
+      <rect x="250" y="9" width="50" height="14" rx="7" fill="{{ternary (isAccepted attemStatus) 'url(#successGradient)' 'url(#errorGradient)'}}"/>
       <text x="275" y="19" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="white" text-anchor="middle">
-        <%= attempt.attemStatus.toLowerCase().includes('accepted') ? 'AC' : 'WA' %>
+        {{ternary (isAccepted attemStatus) 'AC' 'WA'}}
       </text>
       
       <!-- Time -->
       <text x="310" y="21" font-family="Arial, sans-serif" font-size="10" fill="#10b981">
-        <%= attempt.time %>
+        {{time}}
       </text>
       
       <!-- Date -->
       <text x="370" y="21" font-family="Arial, sans-serif" font-size="9" fill="#666666">
-        <%= attempt.date %>
+        {{date}}
       </text>
     </g>
-  <% }); %>
+  {{/each}}
   
   <!-- Footer -->
   <text x="20" y="355" font-family="Arial, sans-serif" font-size="8" fill="#666666">
